@@ -13,9 +13,10 @@ import { Response, Request } from 'express';
 import { AuthService } from 'src/services';
 import ServerError from 'src/utils/serverError';
 
-@Controller('auth/login')
+@Controller('auth')
 export class AuthController {
   constructor(private AuthService: AuthService) {}
+
   @Get()
   getAuthInfo(
     @Param('id') id: string,
@@ -25,11 +26,11 @@ export class AuthController {
     const statusBoolean = false;
     if (statusBoolean)
       throw new ServerError('Error de prueba no identificado', 'BAD_REQUEST');
-    const jsonData = { message: 'Hola leilin', id, queries };
+    const jsonData = { message: 'Hello world!', id, queries };
     res.status(200).json(jsonData);
   }
 
-  @Post() async createAuth(
+  @Post('/login') async createAuth(
     @Req() req: Request,
     @Res() res: Response,
   ): Promise<void> {

@@ -2,7 +2,6 @@ import {
   ArgumentsHost,
   Catch,
   ExceptionFilter,
-  HttpException,
   HttpStatus,
 } from '@nestjs/common';
 import { Response } from 'express';
@@ -11,6 +10,7 @@ import ServerError from 'src/utils/serverError';
 @Catch()
 export class ErrorMiddleware implements ExceptionFilter {
   catch(exception: ServerError, host: ArgumentsHost): void {
+    console.log({ exception });
     const ctx = host.switchToHttp();
     const res: Response = ctx.getResponse();
     const statusCode: string = exception.status

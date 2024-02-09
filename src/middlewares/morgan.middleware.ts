@@ -4,7 +4,6 @@ import morgan from 'morgan';
 @Injectable()
 export class MorganMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
-    console.log("diego gey")
     next();
   }
 }
