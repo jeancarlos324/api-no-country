@@ -20,7 +20,6 @@ export class UsersController {
   }
 
   @Get() async findUsers(@Res() res: Response) {
-    console.log({ user: res.locals.userData });
     const result = await this.UsersService.find();
     res.status(HttpStatus.ACCEPTED).json(result);
   }
