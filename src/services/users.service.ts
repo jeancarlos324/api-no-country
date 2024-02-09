@@ -7,12 +7,11 @@ import { User } from 'src/entity/user.entity';
 export class UsersService {
   private saltOrRounds: number = 10;
 
-  constructor() // @InjectModel(User)
-  // private readonly userModel: typeof User,
+  constructor() // private readonly userModel: typeof User, // @InjectModel(User)
   {}
 
   public async find() {
-    const result = 'a';
+    const result = await User.findAll();
     return result;
   }
   public async create({ password, username }: UserSesion) {

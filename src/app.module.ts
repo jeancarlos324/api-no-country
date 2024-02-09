@@ -7,8 +7,6 @@ import { MorganMiddleware } from '@nest-middlewares/morgan';
 import { CorsMiddleware, ErrorMiddleware } from './middlewares';
 import { AuthService, UsersService } from './services';
 import { AuthController, UsersController } from './controllers';
-import { User } from './entity';
-import { userProvider } from './providers';
 
 @Module({
   imports: [AuthModule, UsersModule],
