@@ -10,10 +10,12 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response, Request } from 'express';
+import { AuthService } from 'src/services/auth/auth.service';
 import ServerError from 'src/utils/serverError';
 
-@Controller('auth/:id')
+@Controller('auth/login')
 export class AuthController {
+  constructor(private AuthService: AuthService) {}
   @Get()
   getAuthInfo(
     @Param('id') id: string,
@@ -27,10 +29,13 @@ export class AuthController {
     res.status(200).json(jsonData);
   }
 
-  @Post() createAuth(@Req() req: Request, @Res() res: Response): void {
-    const { body, params } = req;
-    const { id } = params;
-    res.status(201).json({ id, body, pat: 'pat' });
+  @Post() async createAuth(
+    @Req() req: Request,
+    @Res() res: Response,
+  ): Promise<void> {
+    const { body } = req;
+    const token = await this.AuthService.singIn(body);
+    res.status(200).json({ token });
   }
 
   @Put() updateAuth(
