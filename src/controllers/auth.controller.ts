@@ -10,7 +10,7 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response, Request } from 'express';
-import { AuthService } from 'src/services/auth/auth.service';
+import { AuthService } from 'src/services';
 import ServerError from 'src/utils/serverError';
 
 @Controller('auth/login')
